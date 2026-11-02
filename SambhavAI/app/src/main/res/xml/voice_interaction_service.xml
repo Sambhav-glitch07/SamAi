@@ -4,5 +4,4 @@
     android:recognitionService="com.sambhavai.assistant.SamRecognitionService"
     android:settingsActivity="com.sambhavai.assistant.SettingsActivity"
     android:supportsAssist="true"
-    android:supportsLaunchFromKeyguard="true"
     android:supportsLocalInteraction="true" />
