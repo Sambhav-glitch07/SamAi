@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="sans-serif-medium"
-                android:text="Wake Word: \"Sam\" • Active"
+                android:text="Wake Word: &quot;Sam&quot; • Active"
                 android:textColor="@color/cyan_glow"
                 android:textSize="11sp" />
         </LinearLayout>
@@ -169,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="Tap mic or say \"Sam\" to ask anything..."
+            android:text="Tap mic or say &quot;Sam&quot; to ask anything..."
             android:textColor="@color/text_secondary"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
