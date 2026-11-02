@@ -41,9 +41,52 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = () => {
   const [activeActionBanner, setActiveActionBanner] = useState<string | null>(null);
 
   const recognitionRef = useRef<any>(null);
+  const isListeningRef = useRef(false);
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const chatScrollRef = useRef<HTMLDivElement | null>(null);
+
+  const safeStartRecognition = () => {
+    if (!speechSupported || !recognitionRef.current) {
+      setAssistantState("LISTENING");
+      return;
+    }
+    if (isListeningRef.current) {
+      setAssistantState("LISTENING");
+      return;
+    }
+    try {
+      recognitionRef.current.start();
+      isListeningRef.current = true;
+      setIsMicListening(true);
+      setAssistantState("LISTENING");
+    } catch (err: any) {
+      // InvalidStateError occurs when recognition is already started or starting
+      if (err?.name === "InvalidStateError" || String(err?.message || "").includes("already started")) {
+        isListeningRef.current = true;
+        setIsMicListening(true);
+        setAssistantState("LISTENING");
+      } else {
+        console.warn("SpeechRecognition start notice:", err);
+        setAssistantState("LISTENING");
+      }
+    }
+  };
+
+  const safeStopRecognition = () => {
+    if (!recognitionRef.current) return;
+    try {
+      recognitionRef.current.stop();
+    } catch {
+      try {
+        recognitionRef.current.abort();
+      } catch {
+        // Ignored
+      }
+    }
+    isListeningRef.current = false;
+    setIsMicListening(false);
+  };
 
   useEffect(() => {
     // Check Speech Recognition support
@@ -57,6 +100,7 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = () => {
       recognition.lang = "en-IN";
 
       recognition.onstart = () => {
+        isListeningRef.current = true;
         setIsMicListening(true);
         setAssistantState("LISTENING");
       };
@@ -84,11 +128,13 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = () => {
       };
 
       recognition.onerror = () => {
+        isListeningRef.current = false;
         setIsMicListening(false);
         setAssistantState("IDLE");
       };
 
       recognition.onend = () => {
+        isListeningRef.current = false;
         setIsMicListening(false);
       };
 
@@ -101,7 +147,7 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = () => {
     }
 
     return () => {
-      recognitionRef.current?.abort();
+      safeStopRecognition();
       synthRef.current?.cancel();
     };
   }, []);
@@ -288,7 +334,7 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = () => {
   // Wake word activation
   const triggerWakeWord = () => {
     synthRef.current?.cancel();
-    recognitionRef.current?.abort();
+    safeStopRecognition();
 
     const wakeUserMsg: ChatMessage = {
       id: Math.random().toString(),
@@ -309,15 +355,7 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = () => {
 
     speakText("Yes, I'm listening.", () => {
       // Transition directly to listening for the user's command
-      if (speechSupported && recognitionRef.current) {
-        try {
-          recognitionRef.current.start();
-        } catch {
-          setAssistantState("LISTENING");
-        }
-      } else {
-        setAssistantState("LISTENING");
-      }
+      safeStartRecognition();
     });
   };
 
@@ -463,23 +501,11 @@ export const PhoneSimulator: React.FC<PhoneSimulatorProps> = () => {
   };
 
   const toggleMic = () => {
-    if (isMicListening) {
-      recognitionRef.current?.stop();
-      setIsMicListening(false);
+    if (isMicListening || isListeningRef.current) {
+      safeStopRecognition();
       setAssistantState("IDLE");
     } else {
-      if (speechSupported && recognitionRef.current) {
-        try {
-          recognitionRef.current.start();
-        } catch {
-          // Restart if busy
-          recognitionRef.current.abort();
-          setTimeout(() => recognitionRef.current?.start(), 150);
-        }
-      } else {
-        // Fallback for browsers without Web Speech
-        setAssistantState("LISTENING");
-      }
+      safeStartRecognition();
     }
   };
 
