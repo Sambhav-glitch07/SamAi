@@ -23,9 +23,6 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Determine Project Root
         id: check_dir
         run: |
@@ -41,10 +38,14 @@ jobs:
         run: |
           chmod +x ${{ steps.check_dir.outputs.project_dir }}/gradlew || true
 
+      - name: Accept Android SDK Licenses
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
       - name: Build with Gradle
         run: |
           cd ${{ steps.check_dir.outputs.project_dir }}
-          ./gradlew assembleDebug --stacktrace
+          ./gradlew assembleDebug --stacktrace --no-daemon
 
       - name: Locate Debug APK
         id: find_apk

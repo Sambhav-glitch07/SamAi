@@ -106,9 +106,9 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
-      - uses: android-actions/setup-android@v3
-      - run: chmod +x ./gradlew && ./gradlew assembleDebug --stacktrace
+      - run: chmod +x ./gradlew
+      - run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+      - run: ./gradlew assembleDebug --stacktrace --no-daemon
       - uses: actions/upload-artifact@v4
         with:
           name: SambhavAI-debug-apk
