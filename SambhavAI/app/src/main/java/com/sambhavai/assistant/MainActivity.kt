@@ -279,11 +279,12 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         updateWakeWordBadge()
         val filter = IntentFilter(WakeWordService.BROADCAST_WAKE_DETECTED)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(wakeWordReceiver, filter, RECEIVER_NOT_EXPORTED)
-        } else {
-            registerReceiver(wakeWordReceiver, filter)
-        }
+        ContextCompat.registerReceiver(
+            this,
+            wakeWordReceiver,
+            filter,
+            ContextCompat.RECEIVER_NOT_EXPORTED
+        )
     }
 
     override fun onPause() {

@@ -37,7 +37,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SambhavAI"
         android:usesCleartextTraffic="true"
-        tools:targetApi="32">
+        tools:targetApi="34">
 
         <!-- Main Assistant Activity -->
         <activity

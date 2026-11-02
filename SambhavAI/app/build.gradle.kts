@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.sambhavai.assistant"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.sambhavai.assistant"
