@@ -11,6 +11,9 @@ jobs:
   build:
     name: Build Debug APK
     runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
 
     steps:
       - name: Checkout Repository
@@ -23,13 +26,13 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - name: Make Gradle Wrapper Executable
+      - name: Configure Android SDK and local.properties
         run: |
+          echo "sdk.dir=/usr/local/lib/android/sdk" > local.properties
           chmod +x ./gradlew || true
-
-      - name: Accept Android SDK Licenses
-        run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          mkdir -p /home/runner/.android
+          touch /home/runner/.android/repositories.cfg
+          yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Build with Gradle
         run: |

@@ -11,6 +11,9 @@ jobs:
   build:
     name: Build Debug APK
     runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
 
     steps:
       - name: Checkout Repository
@@ -34,13 +37,14 @@ jobs:
             echo "project_dir=SambhavAI" >> $GITHUB_OUTPUT
           fi
 
-      - name: Make Gradle Wrapper Executable
+      - name: Configure Android SDK and local.properties
         run: |
-          chmod +x ${{ steps.check_dir.outputs.project_dir }}/gradlew || true
-
-      - name: Accept Android SDK Licenses
-        run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          DIR="${{ steps.check_dir.outputs.project_dir }}"
+          echo "sdk.dir=/usr/local/lib/android/sdk" > "$DIR/local.properties"
+          chmod +x "$DIR/gradlew" || true
+          mkdir -p /home/runner/.android
+          touch /home/runner/.android/repositories.cfg
+          yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
       - name: Build with Gradle
         run: |
