@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GlowingBorderView">
+        <attr name="borderWidth" format="dimension" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="glowIntensity" format="float" />
+        <attr name="assistantState" format="enum">
+            <enum name="idle" value="0" />
+            <enum name="listening" value="1" />
+            <enum name="thinking" value="2" />
+            <enum name="speaking" value="3" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="AssistantOrbView">
+        <attr name="orbSize" format="dimension" />
+        <attr name="orbState" format="enum">
+            <enum name="idle" value="0" />
+            <enum name="listening" value="1" />
+            <enum name="thinking" value="2" />
+            <enum name="speaking" value="3" />
+        </attr>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SambhavAI</string>
+    <string name="assistant_name">Sam</string>
+    <string name="wake_word">Sam</string>
+    <string name="voice_interaction_service_label">SambhavAI Voice Assistant</string>
+    <string name="shortcut_speak_short">Talk to Sam</string>
+    <string name="shortcut_speak_long">Activate SambhavAI Assistant</string>
+
+    <!-- States & Status -->
+    <string name="status_idle">Ready • Say \"Sam\"</string>
+    <string name="status_listening">Listening...</string>
+    <string name="status_thinking">Thinking...</string>
+    <string name="status_speaking">Speaking...</string>
+
+    <string name="sam_wake_response">Yes, I\'m listening.</string>
+    <string name="sam_default_greeting">Hello! I\'m Sam. How can I help you?</string>
+    <string name="mic_listening_hint">Tap mic or say \"Sam\"</string>
+    <string name="default_assistant_banner">Set as default digital assistant for instant power button &amp; gesture access</string>
+    <string name="set_default_assistant">Set as Default</string>
+    <string name="wake_word_service_title">SambhavAI Wake Word Active</string>
+    <string name="wake_word_service_desc">Listening for \"Sam\" in background</string>
+
+    <!-- Settings Strings -->
+    <string name="settings_title">Assistant Settings</string>
+    <string name="pref_wake_word_title">Always-On Wake Word (\"Sam\")</string>
+    <string name="pref_wake_word_summary">Detects \"Sam\" hands-free offline using low-power microphone service</string>
+    <string name="pref_wake_sensitivity_title">Wake Word Sensitivity</string>
+    <string name="pref_language_title">Voice Language</string>
+    <string name="pref_voice_speed_title">Speech Rate</string>
+    <string name="pref_voice_pitch_title">Speech Pitch</string>
+    <string name="pref_backend_title">Gemini AI Backend Proxy URL</string>
+    <string name="pref_battery_title">Battery Optimization</string>
+    <string name="pref_battery_summary">Disable battery optimization to keep \"Sam\" wake word active in background</string>
+    <string name="pref_clear_history">Clear Conversation Memory</string>
+    <string name="pref_clear_history_confirm">Conversation history cleared.</string>
+    <string name="pref_privacy_notice">Microphone audio is processed entirely on-device for wake-word. No audio is recorded or stored without permission.</string>
+
+    <!-- Action Strings -->
+    <string name="action_flashlight_on">Turning on flashlight.</string>
+    <string name="action_flashlight_off">Turning off flashlight.</string>
+    <string name="action_open_app">Opening %1$s.</string>
+    <string name="action_app_not_found">Could not find app %1$s on device.</string>
+    <string name="action_call_confirm">Calling %1$s now.</string>
+    <string name="action_alarm_set">Setting alarm for %1$s.</string>
+    <string name="action_volume_up">Volume increased.</string>
+    <string name="action_volume_down">Volume decreased.</string>
+    <string name="action_time_is">It is %1$s.</string>
+
+    <!-- Errors -->
+    <string name="error_permission_mic">Microphone permission is required for voice recognition.</string>
+    <string name="error_speech_not_recognized">Sorry, I didn\'t catch that. Could you repeat?</string>
+    <string name="error_ai_offline">Unable to connect to AI server. Local phone commands are still active.</string>
+</resources>

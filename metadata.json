@@ -1,0 +1,6 @@
+{
+  "name": "SambhavAI - Personal Voice Assistant",
+  "description": "Native Android Voice Assistant (Sam) inspired by Siri and JARVIS with offline wake-word, VoiceInteractionService, Liquid-Glass UI, and Gemini AI Brain.",
+  "requestFramePermissions": ["android.permission.RECORD_AUDIO"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

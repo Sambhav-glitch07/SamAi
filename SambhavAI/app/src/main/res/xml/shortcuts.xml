@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="assistant_speak"
+        android:enabled="true"
+        android:icon="@drawable/ic_mic"
+        android:shortcutShortLabel="@string/shortcut_speak_short"
+        android:shortcutLongLabel="@string/shortcut_speak_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.sambhavai.assistant"
+            android:targetClass="com.sambhavai.assistant.MainActivity" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

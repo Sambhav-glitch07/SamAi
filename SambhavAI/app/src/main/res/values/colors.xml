@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Deep Space Navy & Black Backgrounds -->
+    <color name="bg_dark">#050814</color>
+    <color name="bg_dark_gradient_top">#070B1E</color>
+    <color name="bg_dark_gradient_bottom">#02040A</color>
+
+    <!-- Liquid Glass Surfaces -->
+    <color name="glass_surface">#18121B33</color>
+    <color name="glass_surface_elevated">#2619284D</color>
+    <color name="glass_card">#20152442</color>
+    <color name="glass_card_stroke">#33385785</color>
+    <color name="glass_card_highlight">#4DFFFFFF</color>
+
+    <!-- Futuristic Luminous Accents -->
+    <color name="cyan_glow">#00E5FF</color>
+    <color name="cyan_accent">#00B0FF</color>
+    <color name="blue_glow">#2979FF</color>
+    <color name="violet_accent">#8A2BE2</color>
+    <color name="purple_glow">#7C4DFF</color>
+    <color name="electric_amber">#FF9100</color>
+    <color name="emerald_active">#00E676</color>
+    <color name="crimson_alert">#FF1744</color>
+
+    <!-- States Border Colors -->
+    <color name="border_idle_start">#332979FF</color>
+    <color name="border_idle_end">#33E0F7FA</color>
+    <color name="border_listening_start">#FF00E5FF</color>
+    <color name="border_listening_end">#FF0091EA</color>
+    <color name="border_thinking_start">#FF7C4DFF</color>
+    <color name="border_thinking_end">#FF2979FF</color>
+    <color name="border_speaking_start">#FFFFFFFF</color>
+    <color name="border_speaking_end">#FF00E5FF</color>
+
+    <!-- Typography -->
+    <color name="text_primary">#F0F4F8</color>
+    <color name="text_secondary">#8E9EBA</color>
+    <color name="text_tertiary">#51627E</color>
+    <color name="text_cyan">#64FFDA</color>
+</resources>
